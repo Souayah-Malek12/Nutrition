@@ -49,6 +49,8 @@ const ImcPage = () => {
 
     // Save IMC to Firestore
     try {
+      const user = auth.currentUser;
+      if(user){
       await addDoc(collection(db, "imc"), {
         userId: user.uid, // Store user ID
         userRef: doc(db, "users", user.uid), // Store reference
@@ -57,7 +59,8 @@ const ImcPage = () => {
         height: taille,
         createdAt: new Date(),
       });
-
+    }
+    
       console.log("IMC saved successfully!");
     } catch (error) {
       console.error("Error saving IMC:", error);

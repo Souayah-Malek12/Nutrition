@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { auth, db } from "../config/firebase"; // Ensure db and auth are exported from firebase.js
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
+import { toast, ToastContainer } from 'react-toastify';
 
 export const Registre = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ export const Registre = () => {
   const [poids, setPoids] = useState("");
   const [taille, setTaille] = useState("");
   const [sexe, setSexe] = useState("");
+  const [message, setMessage] = useState("")
 
   // Function to handle sign-up
   const signUp = async () => {
@@ -35,8 +37,12 @@ export const Registre = () => {
       });
 
       console.log("User registered successfully!", userCredential);
+      setMessage("User  registered uccessfully!")
+
     } catch (err) {
       console.error("Error:", err.message);
+      toast.error("error while signing  up"); // Display success toast
+
     }
   };
 
@@ -44,9 +50,12 @@ export const Registre = () => {
     <div className="min-h-screen flex items-center justify-center  p-4">
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-md w-full animate-fade-in">
         <h2 className="text-2xl font-bold text-center mb-6 text-blue-900">Register</h2>
+        <ToastContainer />
 
         {/* Form for input */}
         <form className="space-y-4">
+        {message && <div style={{ color: 'green', marginTop: '10px' }}>{message}</div>}
+
           <div>
             <label htmlFor="nom" className="block text-sm font-medium text-gray-700">
               Nom

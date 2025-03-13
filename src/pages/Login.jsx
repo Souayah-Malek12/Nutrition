@@ -1,46 +1,55 @@
 import React, { useState } from "react";
-import { auth, db } from "../config/firebase"; // Ensure db and auth are exported from firebase.js
+import { auth } from "../config/firebase"; 
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Auth = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-  // Function to handle sign-in
   const signIn = async () => {
     try {
-      // If the user exists, log them in
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User logged in successfully!");
+      setMessage("User logged in successfully!");
+      toast.success("User logged in successfully!"); // Display success toast
+
+      navigate('/');
     } catch (err) {
       console.error("Error:", err.message);
+      setMessage("Error");
+      toast.error("Login failed. Please try again."); // Show error toast if login fails
     }
   };
 
-  // Function to handle logout
   const logout = async () => {
     try {
       await signOut(auth);
       console.log("User logged out successfully!");
-      setEmail(""); // Reset email
-      setPassword(""); // Reset password
+      setEmail("");
+      setPassword("");
     } catch (err) {
       console.error("Error:", err.message);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  p-4">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-md w-full animate-fade-in">
         <h2 className="text-2xl font-bold text-center mb-6 text-blue-900">Authentication</h2>
 
-        {/* Form for input */}
+        {/* ToastContainer for toast messages */}
+        <ToastContainer />
+
+        {message && <div style={{ color: 'red', marginTop: '10px' }}>{message}</div>}
+        
         <form className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
               id="email"
@@ -52,9 +61,7 @@ export const Auth = () => {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
               id="password"
