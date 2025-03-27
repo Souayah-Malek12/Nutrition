@@ -93,7 +93,7 @@ const ImgHistoric = () => {
                   <td className="p-3 border text-center">{item.age}</td>
 
                   <td className="p-3 border text-center">{item.img}</td>
-                  <td className="p-3 border text-center">{item.imgMessage} kg</td>
+                  <td className="p-3 border text-center">{item.imgMessage} </td>
                 </tr>
               ))}
             </tbody>

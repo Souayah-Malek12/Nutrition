@@ -86,7 +86,7 @@ const ImcHistoric = () => {
                 <th className="p-3 border border-gray-300">Date</th>
                 <th className="p-3 border border-gray-300">BMI (IMC)</th>
                 <th className="p-3 border border-gray-300">Weight (kg)</th>
-                <th className="p-3 border border-gray-300">Height (cm)</th>
+                <th className="p-3 border border-gray-300">Message </th>
               </tr>
             </thead>
             <tbody>
@@ -103,7 +103,7 @@ const ImcHistoric = () => {
                   </td>
                   <td className="p-3 border border-gray-300 text-center">{item.bmi}</td>
                   <td className="p-3 border border-gray-300 text-center">{item.weight} kg</td>
-                  <td className="p-3 border border-gray-300 text-center">{item.height} cm</td>
+                  <td className="p-3 border border-gray-300 text-center">{item.imcMessage} cm</td>
                 </tr>
               ))}
             </tbody>

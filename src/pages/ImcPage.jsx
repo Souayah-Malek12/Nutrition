@@ -45,8 +45,8 @@ const ImcPage = () => {
     // Calculate IMC (BMI)
     const bmi = poids / (heightInMeters * heightInMeters);
     setImc(bmi.toFixed(2));
-    setImcMessage(interpretBMI(bmi));
-
+    const imcMessageInterpetation = interpretBMI(bmi);
+    setImcMessage(imcMessageInterpetation)
     // Save IMC to Firestore
     try {
       const user = auth.currentUser;
@@ -57,10 +57,11 @@ const ImcPage = () => {
         bmi: bmi.toFixed(2), // Keep 2 decimal places
         weight: poids,
         height: taille,
+        imcMessage: imcMessageInterpetation,
         createdAt: new Date(),
       });
     }
-    
+      console.log("user",imcMessage)
       console.log("IMC saved successfully!");
     } catch (error) {
       console.error("Error saving IMC:", error);

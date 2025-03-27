@@ -9,6 +9,7 @@ import React from "react";
 import ImcHistoric from "./pages/ImcHistoric"
 import ImgHistoric from "./pages/ImgHistoric"
 import Navbar from "./components/navbar"
+import MyProfile from "./pages/myProfile"
 
 function App() {
 
@@ -26,6 +27,8 @@ function App() {
         <Route path="/recherche" element={ <RechercheAliment />} />
         <Route path="/hiImc" element={ <ImcHistoric />} />
         <Route path="/hiImg" element={ <ImgHistoric />} />
+        <Route path="/myProfile" element={ <MyProfile />} />
+
      </Routes>
      </BrowserRouter>
     </>

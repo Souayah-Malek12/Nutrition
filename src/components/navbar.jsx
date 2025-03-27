@@ -77,7 +77,7 @@ const Navbar = () => {
               <div className="absolute left-0 mt-2 hidden bg-white text-gray-700 shadow-md rounded-lg w-40 group-hover:block">
                 <a
                   href="/hiImc"
-                  className="block px-4 py-2 hover:bg-green-500 hover:text-white transition duration-300"
+                  className="block px-4 py-2 mt-2 hover:bg-green-500 hover:text-white transition duration-300"
                 >
                   Check IMC
                 </a>
@@ -86,6 +86,12 @@ const Navbar = () => {
                   className="block px-4 py-2 hover:bg-green-500 hover:text-white transition duration-300"
                 >
                   Check IMG
+                </a>
+                <a
+                  href="/myProfile"
+                  className="block px-4 py-2 hover:bg-green-500 hover:text-white transition duration-300"
+                >
+                  Ideal Weight
                 </a>
                 <a
                   href="/logout"
